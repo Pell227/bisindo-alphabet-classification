@@ -16,7 +16,6 @@ MODEL_FILES = {
 DEFAULT_CLASSES = list("ABCDEFGHIJKLMN") + ["NOTHING"] + list("OPQRSTUVWXYZ")
 LOW_CONFIDENCE = 60.0
 
-
 def get_available_models() -> dict[str, Path]:
     return {name: path for name, path in MODEL_FILES.items() if path.exists()}
 

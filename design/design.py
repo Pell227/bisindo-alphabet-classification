@@ -16,24 +16,19 @@ def render_top_grid(model_names: list[str]):
             up = st.file_uploader("Pilih gambar", type=["jpg", "jpeg", "png"])
         with tab_cam:
             cam = st.camera_input("Ambil foto")
-
     return model_name, (cam or up)
 
 def render_result_grid(img, results, ms: float, model_name: str, low_conf_threshold: float):
     st.divider()
     col_preview, col_result = st.columns([1, 1.3], gap="large")
-
     with col_preview:
-        st.image(img, caption="Gambar Masukan", use_container_width=True)
-
+        st.image(img, caption="Hasil", use_container_width=True)
     with col_result:
         label, conf = results[0]
-
         if label == "NOTHING":
             st.subheader("Tidak ada isyarat terdeteksi")
         else:
             st.subheader(f"Prediksi: {label}")
-
         st.metric("Confidence", f"{conf:.2f}%")
         if conf < low_conf_threshold:
             st.warning(

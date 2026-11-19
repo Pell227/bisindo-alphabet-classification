@@ -14,10 +14,8 @@ from visual.interface import (
     prepare_image,
 )
 
-
 def main():
     setup_page()
-
     class_names = load_class_names()
     available = get_available_models()
     if not available:
@@ -42,7 +40,6 @@ def main():
     img, batch = prepare_image(source.getvalue(), model_name)
     results, ms = predict(model, batch, class_names)
     render_result_grid(img, results, ms, model_name, LOW_CONFIDENCE)
-
 
 if __name__ == "__main__":
     main()
