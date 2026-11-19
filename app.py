@@ -20,7 +20,7 @@ def main():
     available = get_available_models()
     if not available:
         st.error(
-            "File model tidak ditemukan. Letakkan file .keras di folder `models/`."
+            "File model tidak ditemukan"
         )
         st.stop()
 
@@ -32,10 +32,6 @@ def main():
             f"Jumlah kelas model ({model.output_shape[-1]}) tidak sama dengan class_names ({len(class_names)})."
         )
         st.stop()
-
-    if source is None:
-        st.info("Belum ada gambar. Silakan unggah atau ambil foto di panel kanan.")
-        return
 
     img, batch = prepare_image(source.getvalue())
     results, ms = predict(model, batch, class_names)

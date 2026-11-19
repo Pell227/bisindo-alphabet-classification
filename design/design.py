@@ -26,14 +26,10 @@ def render_result_grid(img, results, ms: float, model_name: str, low_conf_thresh
     with col_result:
         label, conf = results[0]
         if label == "NOTHING":
-            st.subheader("Tidak ada isyarat terdeteksi")
+            st.subheader("Tidak ada bahasa isyarat yang terdeteksi")
         else:
             st.subheader(f"Prediksi: {label}")
         st.metric("Confidence", f"{conf:.2f}%")
-        if conf < low_conf_threshold:
-            st.warning(
-                "Confidence rendah. Pastikan pencahayaan cukup dan posisi tangan jelas."
-            )
 
         st.write("Tiga prediksi teratas")
         st.table(
