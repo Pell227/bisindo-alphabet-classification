@@ -8,9 +8,9 @@ from PIL import Image, ImageOps
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_FILES = {
-    "MobileNetV2": BASE_DIR / "models" / "mobilenetv2_bisindo.keras",
-    "ResNet50": BASE_DIR / "models" / "resnet50_bisindo.keras",
-    "EfficientNetB0": BASE_DIR / "models" / "efficientnetb0_bisindo.keras",
+    "MobileNetV2": BASE_DIR / "models" / "mobilenetv2_bisindo_ft.keras",
+    "ResNet50": BASE_DIR / "models" / "resnet50_bisindo_ft.keras",
+    "EfficientNetB0": BASE_DIR / "models" / "efficientnetb0_bisindo_ft.keras",
 }
 
 DEFAULT_CLASSES = list("ABCDEFGHIJKLMN") + ["NOTHING"] + list("OPQRSTUVWXYZ")
@@ -33,7 +33,7 @@ def load_model(path: str):
     return tf.keras.models.load_model(path)
 
 
-def prepare_image(file_bytes: bytes):
+def prepare_image(file_bytes: bytes, model_name: list[str]):
     img = Image.open(io.BytesIO(file_bytes))
     img = ImageOps.exif_transpose(img).convert("RGB")
 
