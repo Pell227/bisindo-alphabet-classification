@@ -37,7 +37,7 @@ def main():
         st.info("Belum ada gambar. Silakan unggah atau ambil foto di panel kanan.")
         return
 
-    img, batch = prepare_image(source.getvalue(), model_name)
+    img, batch = prepare_image(source.getvalue())
     results, ms = predict(model, batch, class_names)
     render_result_grid(img, results, ms, model_name, LOW_CONFIDENCE)
 

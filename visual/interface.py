@@ -33,7 +33,7 @@ def load_model(path: str):
     return tf.keras.models.load_model(path)
 
 
-def prepare_image(file_bytes: bytes, model_name: str):
+def prepare_image(file_bytes: bytes):
     img = Image.open(io.BytesIO(file_bytes))
     img = ImageOps.exif_transpose(img).convert("RGB")
 
@@ -42,14 +42,6 @@ def prepare_image(file_bytes: bytes, model_name: str):
     ).numpy()
 
     batch = arr[np.newaxis, ...]
-
-    if model_name == "MobileNetV2":
-        batch = tf.keras.applications.mobilenet_v2.preprocess_input(batch)
-    elif model_name == "ResNet50":
-        batch = tf.keras.applications.resnet50.preprocess_input(batch)
-    elif model_name == "EfficientNetB0":
-        batch = tf.keras.applications.efficientnet.preprocess_input(batch)
-
     return img, batch
 
 
